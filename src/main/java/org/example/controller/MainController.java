@@ -7,8 +7,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -43,5 +45,38 @@ public class MainController {
 
 		this.userService.save(user);
 		return new ResponseEntity<>(user, headers, HttpStatus.CREATED);
+	}
+
+	@PutMapping()
+	public ResponseEntity<User> updateUser(@RequestBody @Valid User user, UriComponentsBuilder builder) {
+		HttpHeaders headers = new HttpHeaders();
+
+		if (user == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		this.userService.save(user);
+
+		return new ResponseEntity<>(user, headers, HttpStatus.OK);
+	}
+
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<User> deleteUser(Long id) {
+		User user = this.userService.getById(id);
+
+		if (user == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		this.userService.delete(id);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping()
+	public ResponseEntity<List<User>> getAllUsers() {
+
+		List<User> userList = userService.getAll();
+		return new ResponseEntity<>(userList, HttpStatus.OK);
 	}
 }
