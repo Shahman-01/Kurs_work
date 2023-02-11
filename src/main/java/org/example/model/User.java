@@ -7,6 +7,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+@Table(name = "users")
 public class User {
 
 	@Id
@@ -29,13 +30,12 @@ public class User {
 	@Size(min = 5, max = 128)
 	private String password;
 
-	private Date date_of_creating;
+	private Date registered;
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Id
 	public Long getId() {
 		return id;
 	}
@@ -64,11 +64,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getDate_of_creating() {
-		return date_of_creating;
+	public Date getRegistered() {
+		return registered;
 	}
 
-	public void setDate_of_creating(Date date_of_creating) {
-		this.date_of_creating = date_of_creating;
+	public void setRegistered(Date date_of_creating) {
+		this.registered = date_of_creating;
 	}
 }

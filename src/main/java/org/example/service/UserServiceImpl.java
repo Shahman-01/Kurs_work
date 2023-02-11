@@ -3,11 +3,13 @@ package org.example.service;
 import org.example.model.User;
 import org.example.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Component
 public class UserServiceImpl implements UserService {
 
 	final
@@ -19,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getById(Long id) {
-		return userRepo.getOne(id);
+		return userRepo.findById(id).get();
 	}
 
 	@Override

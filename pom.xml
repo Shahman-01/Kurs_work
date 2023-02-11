@@ -3,7 +3,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>Qoutes</artifactId>
-  <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>Qoutes Maven Webapp</name>
   <url>http://maven.apache.org</url>
@@ -58,6 +57,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>runtime</scope>
     </dependency>
 
   </dependencies>
