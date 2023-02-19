@@ -2,14 +2,26 @@ package org.example.service;
 
 import org.example.model.User;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
-	User getById(Long id);
+	Optional<User> findById(Long id);
 
-	void save(User user);
+	Optional<User> findOneByLogin(String login);
+
+	void save(User User);
 
 	void delete(Long id);
 
 	List<User> getAll();
+
+	List<User> filterByDateOfRegistration();
+
+	List<User> getAllActive();
+
+	List<User> filterByDateAfterCertainDate(Date date);
+
+	List<User> filterByDateBeforeCertainDate(Date date);
 }
