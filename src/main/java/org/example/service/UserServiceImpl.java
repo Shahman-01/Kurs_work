@@ -28,12 +28,19 @@ public class UserServiceImpl implements UserService {
 		return UserRepo.findById(id);
 	}
 
+	//возвращает пользователя по login
 	@Override
 	public Optional<User> findOneByLogin(String login) {
 		return UserRepo.findByLogin(login);
 	}
 
-	//сохраняет клиента
+	//возвращает пользователя по email
+	@Override
+	public Optional<User> findByEmail(String email) {
+		return UserRepo.findByEmail(email);
+	}
+
+	//сохраняет пользователя
 	@Override
 	public void save(User User) {
 		UserRepo.save(User);

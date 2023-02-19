@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,97 +24,136 @@ public class UserController {
 		this.UserService = UserService;
 	}
 
-	//получаем клиента по id
+	//получаем пользователя по id
 	@GetMapping("/{id}")
 	public ResponseEntity<User> getUser(@PathVariable("id") Long UserId) {
-		//если клиента нет возвращает статус BAD_REQUEST
+		//если пользователя нет возвращает статус BAD_REQUEST
 		if (UserId == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		//получаем клиента по id
-		User User = UserService.getById(UserId);
+		//получаем пользователя по id
+		User User = UserService.findById(UserId).orElse(null);
 
-		//если клиента нет возвращает статус NOT_FOUND
+		//если пользователя нет возвращает статус NOT_FOUND
 		if (User == null)
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-		//возвращает клиента и статус OK
+		//возвращает пользователя и статус OK
 		return new ResponseEntity<>(User, HttpStatus.OK);
 	}
 
-	//добавляем клиента
+	//добавляем пользователя
 	@PostMapping()
 	public ResponseEntity<User> saveUser(@RequestBody @Valid User User) {
 		HttpHeaders headers = new HttpHeaders();
 
-		//если клиента нет возвращает статус NOT_FOUND
+		//если пользователя нет возвращает статус NOT_FOUND
 		if (User == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		//сохраняет клиента в базу данных
+		//сохраняет пользователя в базу данных
 		UserService.save(User);
-		//возвращает клиента и статус CREATED
+		//возвращает пользователя и статус CREATED
 		return new ResponseEntity<>(User, headers, HttpStatus.CREATED);
 	}
 
-	//обновляем клиента
+	//обновляем пользователя
 	@PutMapping()
 	public ResponseEntity<User> updateUser(@RequestBody @Valid User User, UriComponentsBuilder builder) {
 		HttpHeaders headers = new HttpHeaders();
 
-		//если клиента нет возвращает статус BAD_REQUEST
+		//если пользователя нет возвращает статус BAD_REQUEST
 		if (User == null)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
-		//сохраняет клиента в базу данных
+		//сохраняет пользователя в базу данных
 		UserService.save(User);
 
-		//возвращает всех клиентов и статус OK
+		//возвращает всех пользователей и статус OK
 		return new ResponseEntity<>(User, headers, HttpStatus.OK);
 	}
 
-	//удаляем клиента по id
+	//удаляем пользователя по id
 	@DeleteMapping("/{id}")
 	public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
-		User User = UserService.getById(id);
+		User User = UserService.findById(id).orElse(null);
 
-		//если клиента нет возвращает статус NOT_FOUND
+		//если пользователя нет возвращает статус NOT_FOUND
 		if (User == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		//удаляет клиента из базы данных
+		//удаляет пользователя из базы данных
 		UserService.delete(id);
 
 		//возвращает статус NO_CONTENT
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	//получаем список всех клиентов
+	//получаем список всех пользователей
 	@GetMapping()
 	public ResponseEntity<List<User>> getAllUsers() {
 
-		//достает всех клиентов и кладем в массив
+		//достает всех пользователей и кладем в массив
 		List<User> UserList = UserService.getAll();
 
 		//если массив пуст возвращает статус NOT_FOUND
 		if (UserList.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-		//возвращает всех клиентов и статус OK
+		//возвращает всех пользователей и статус OK
 		return new ResponseEntity<>(UserList, HttpStatus.OK);
 	}
 
 	@GetMapping("/filter")
 	public ResponseEntity<List<User>> filterByDateOfRegistration() {
-		//достает всех клиентов и кладем в массив
+		//достает всех пользователей и кладем в массив
 		List<User> UserList = UserService.filterByDateOfRegistration();
 
 		//если массив пуст возвращает статус NOT_FOUND
 		if (UserList.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-		//возвращает всех клиентов и статус OK
+		//возвращает всех пользователей и статус OK
+		return new ResponseEntity<>(UserList, HttpStatus.OK);
+	}
+
+	@GetMapping("/getAllActive")
+	public ResponseEntity<List<User>> getAllActive() {
+		//достает всех активных пользователей и кладем в массив
+		List<User> UserList = UserService.getAllActive();
+
+		//если массив пуст возвращает статус NOT_FOUND
+		if (UserList.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		//возвращает всех пользователей и статус OK
+		return new ResponseEntity<>(UserList, HttpStatus.OK);
+	}
+
+	@GetMapping("/filterDateAfter")
+	public ResponseEntity<List<User>> filterByDateAfterCertainDate(@PathVariable("date") Date date) {
+		//достает всех пользователей и кладем в массив
+		List<User> UserList = UserService.filterByDateAfterCertainDate(date);
+
+		//если массив пуст возвращает статус NOT_FOUND
+		if (UserList.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		//возвращает всех пользователей и статус OK
+		return new ResponseEntity<>(UserList, HttpStatus.OK);
+	}
+
+	@GetMapping("/filterDateBefore")
+	public ResponseEntity<List<User>> filterByDateBeforeCertainDate(@PathVariable("date") Date date) {
+		//достает всех пользователей и кладем в массив
+		List<User> UserList = UserService.filterByDateBeforeCertainDate(date);
+
+		//если массив пуст возвращает статус NOT_FOUND
+		if (UserList.isEmpty())
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+		//возвращает всех пользователей и статус OK
 		return new ResponseEntity<>(UserList, HttpStatus.OK);
 	}
 

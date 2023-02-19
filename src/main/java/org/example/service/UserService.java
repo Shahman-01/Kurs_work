@@ -11,6 +11,8 @@ public interface UserService {
 
 	Optional<User> findOneByLogin(String login);
 
+	Optional<User> findByEmail(String email);
+
 	void save(User User);
 
 	void delete(Long id);
