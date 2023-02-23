@@ -14,16 +14,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		this.dataSource = dataSource;
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication()
-				.dataSource(dataSource)
-				.usersByUsernameQuery("select username,password,enabled "
-						+ "from users where username=?")
-				.authoritiesByUsernameQuery("select username, authority "
-						+ "from authorities where username=?")
-				.passwordEncoder(passwordEncoder());
-	}
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.jdbcAuthentication()
+//				.dataSource(dataSource)
+//				.usersByUsernameQuery("select username,password,enabled "
+//						+ "from users where username=?")
+//				.authoritiesByUsernameQuery("select username, authority "
+//						+ "from authorities where username=?")
+//				.passwordEncoder(passwordEncoder());
+//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
