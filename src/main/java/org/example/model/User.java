@@ -3,10 +3,9 @@ package org.example.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -29,4 +28,5 @@ public class User {
 	private String email;
 	private Date dateOfRegistration;
 	private boolean isActive;
+	private Role role;
 }

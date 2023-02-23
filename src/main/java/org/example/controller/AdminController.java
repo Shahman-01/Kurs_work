@@ -15,12 +15,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/Users")
-public class UserController {
+public class AdminController {
 
 	final
 	UserService UserService;
 
-	public UserController(UserService UserService) {
+	public AdminController(UserService UserService) {
 		this.UserService = UserService;
 	}
 
@@ -97,7 +97,7 @@ public class UserController {
 		//достает всех пользователей и кладем в массив
 		List<User> UserList = UserService.getAll();
 
-		//если массив пуст возвращает статус NOT_FOUND
+		//если fмассив пуст возвращает статус NOT_FOUND
 		if (UserList.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -105,7 +105,8 @@ public class UserController {
 		return new ResponseEntity<>(UserList, HttpStatus.OK);
 	}
 
-	@GetMapping("/filter")
+	//возвращает всех пользователей, отсортированных по дате регистрации
+	@GetMapping("/sorted")
 	public ResponseEntity<List<User>> filterByDateOfRegistration() {
 		//достает всех пользователей и кладем в массив
 		List<User> UserList = UserService.filterByDateOfRegistration();
@@ -118,6 +119,7 @@ public class UserController {
 		return new ResponseEntity<>(UserList, HttpStatus.OK);
 	}
 
+	//возвращает всех активных пользователей
 	@GetMapping("/getAllActive")
 	public ResponseEntity<List<User>> getAllActive() {
 		//достает всех активных пользователей и кладем в массив
@@ -131,9 +133,10 @@ public class UserController {
 		return new ResponseEntity<>(UserList, HttpStatus.OK);
 	}
 
+	//возвращает всех пользователей зарегистрировавшихся после даты date
 	@GetMapping("/filterDateAfter")
 	public ResponseEntity<List<User>> filterByDateAfterCertainDate(@PathVariable("date") Date date) {
-		//достает всех пользователей и кладем в массив
+		//достает всех пользователей зарегистрировавшихся после даты date и кладем в массив
 		List<User> UserList = UserService.filterByDateAfterCertainDate(date);
 
 		//если массив пуст возвращает статус NOT_FOUND
@@ -144,9 +147,10 @@ public class UserController {
 		return new ResponseEntity<>(UserList, HttpStatus.OK);
 	}
 
+	//возвращает всех пользователей зарегистрировавшихся до даты date
 	@GetMapping("/filterDateBefore")
 	public ResponseEntity<List<User>> filterByDateBeforeCertainDate(@PathVariable("date") Date date) {
-		//достает всех пользователей и кладем в массив
+		//достает всех пользователей, зарегистрировавшихся до даты date и кладем в массив
 		List<User> UserList = UserService.filterByDateBeforeCertainDate(date);
 
 		//если массив пуст возвращает статус NOT_FOUND
