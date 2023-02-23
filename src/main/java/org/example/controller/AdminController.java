@@ -14,11 +14,10 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/Users")
+@RequestMapping("/api/admins")
 public class AdminController {
 
-	final
-	UserService UserService;
+	final UserService UserService;
 
 	public AdminController(UserService UserService) {
 		this.UserService = UserService;

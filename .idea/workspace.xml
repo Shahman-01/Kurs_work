@@ -9,13 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e485d99-efc2-431d-a2f3-0944fd85e3b3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database/initDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database/initDB.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/database/populateDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database/populateDB.sql" afterDir="false" />
-    </list>
+    <list default="true" id="9e485d99-efc2-431d-a2f3-0944fd85e3b3" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +74,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.Application">
+  <component name="RunManager" selected="Database Script.initDB.sql">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.controller.Test" />
       <module name="Kurs" />
@@ -93,6 +87,11 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="initDB.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/main/resources/database/initDB.sql" />
+      <script-mode>FILE</script-mode>
+      <method v="2" />
     </configuration>
     <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="Kurs" />
@@ -209,12 +208,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.Test" />
+      <item itemvalue="Database Script.initDB.sql" />
       <item itemvalue="Spring Boot.Application" />
       <item itemvalue="Spring Boot.App" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.65" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Database Script.initDB.sql" />
         <item itemvalue="Spring Boot.Application" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Spring Boot.App" />
@@ -240,7 +241,7 @@
       <workItem from="1676959774988" duration="521000" />
       <workItem from="1676960321871" duration="3831000" />
       <workItem from="1677170347977" duration="1389000" />
-      <workItem from="1677171998059" duration="655000" />
+      <workItem from="1677171998059" duration="964000" />
     </task>
     <servers />
   </component>
